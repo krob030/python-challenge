@@ -1,72 +1,50 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
-import pandas as pd
-import numpy as np
-import glob
 import os
-
-
-# In[2]:
-
-
-csv_path= "C:/Users/karsa_000/Desktop/budget_data.csv"
-
-
-# In[14]:
-
-
-budget_pd= pd.read_csv(csv_path)
-
-
-# In[15]:
-
-
-budget_pd.columns = ["Date", "Profit_Loss"]
-
-
-# In[16]:
-
-
-TotMonths= budget_pd["Date"].count()
-
-
-# In[17]:
-
-
-Total= budget_pd["Profit_Loss"].sum()
-
-
-# In[18]:
-
-
-Avg= budget_pd["Profit_Loss"].mean()
-
-
-# In[19]:
-
-
-Great_Inc= budget_pd.max()
-
-
-# In[20]:
-
-
-Great_Dec= budget_pd.min()
-
-
-# In[21]:
-
-
-title= ("Financial Analysis")
-spaces= ("----------------------------")
-print(title)
-print(spaces)
-print("Total Months: " + str(TotMonths))
-print("Average  Change: " + str(Avg))
-print("Greatest Increase in Profits: " + str(Great_Inc.to_string(header= None, dtype=None)))
-print("Greatest Decrease in Profits: " + str(Great_Dec.to_string(header= None, dtype=None)))
-
+import csv
+csvpath= os.path.join("C:/Users/karsa_000/Desktop/Boot Camp/module 3/HWK/budget_data.csv")
+with open(csvpath, newline='') as csvfile:
+    csvreader= csv.reader(csvfile, delimiter=',')   
+    # removing header
+    csv_header = next(csvreader)
+    Total_months = 0
+    for line in csvreader:
+      Total_months += 1
+    #print (Total_months)
+with open(csvpath, newline='') as csvfile:
+    csvreader= csv.reader(csvfile, delimiter=',')
+    csv_header = next(csvreader)
+    # extract first line
+    first_line = next(csvreader)
+    # init previous value
+    prev = 0
+    # init current value
+    current = int(first_line[1])
+    # list of differences
+    diff_list = []
+    # calculate difference
+    difference = current - prev
+    diff_list.append(difference)
+    for line in csvreader:
+        prev = current
+        current = int(line[1])
+        difference = current - prev
+        diff_list.append(difference)
+    GI= max(diff_list)
+    GD= min(diff_list)
+    #print(max(diff_list))
+    #print(min(diff_list))
+print("Financial Analysis")
+print("----------------------------")
+print("Total Months: "+ str(Total_months))
+print("Total: $")
+print("Average  Change: $")
+print("Greatest Increase in Profits: "+ "($" + str(GI)+ ")")
+print("Greatest Decrease in Profits: "+ "($" + str(GD)+ ")")
+text_file = open("Output.txt", "w")
+text_file.write("Financial Analysis"+ '\n')
+text_file.write("----------------------------"+ '\n')
+text_file.write("Total Months: "+ str(Total_months)+ '\n')
+text_file.write("Total: $"+ '\n')
+text_file.write("Average  Change: $"+ '\n')
+text_file.write("Greatest Increase in Profits: "+ "($" + str(GI)+ ")"+ '\n')
+text_file.write("Greatest Decrease in Profits: "+ "($" + str(GD)+ ")"+ '\n')
+text_file.close()
