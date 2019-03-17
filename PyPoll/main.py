@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "code",
-   "execution_count": 43,
+   "execution_count": 81,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -14,7 +14,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 44,
+   "execution_count": 82,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -23,7 +23,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 45,
+   "execution_count": 83,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -32,7 +32,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 46,
+   "execution_count": 84,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -41,7 +41,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 47,
+   "execution_count": 85,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -50,7 +50,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 48,
+   "execution_count": 86,
    "metadata": {},
    "outputs": [
     {
@@ -72,7 +72,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 49,
+   "execution_count": 87,
    "metadata": {},
    "outputs": [
     {
@@ -94,7 +94,29 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 50,
+   "execution_count": 99,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "          Candidate  Candidate\n",
+      "Khan           63.0    2218231\n",
+      "Correy         20.0     704200\n",
+      "Li             14.0     492940\n",
+      "O'Tooley        3.0     105630\n"
+     ]
+    }
+   ],
+   "source": [
+    "j= pd.concat(([pct,tr]), axis=1)\n",
+    "print(j)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 100,
    "metadata": {},
    "outputs": [
     {
@@ -105,16 +127,11 @@
       "----------------------------\n",
       "Total Votes: 3521001\n",
       "----------------------------\n",
-      "Khan        2218231\n",
-      "Correy       704200\n",
-      "Li           492940\n",
-      "O'Tooley     105630\n",
-      "Name: Candidate, dtype: int64\n",
-      "Khan        63.0\n",
-      "Correy      20.0\n",
-      "Li          14.0\n",
-      "O'Tooley     3.0\n",
-      "Name: Candidate, dtype: float64\n",
+      "          Candidate  Candidate\n",
+      "Khan           63.0    2218231\n",
+      "Correy         20.0     704200\n",
+      "Li             14.0     492940\n",
+      "O'Tooley        3.0     105630\n",
       "----------------------------\n",
       "Winner: Khan\n",
       "----------------------------\n"
@@ -128,8 +145,7 @@
     "print(spaces)\n",
     "print(\"Total Votes: \" + str(TotVote))\n",
     "print(spaces)\n",
-    "print(tr)\n",
-    "print(pct)\n",
+    "print(j)\n",
     "print(spaces)\n",
     "print(\"Winner: Khan\")\n",
     "print(spaces)"
@@ -137,7 +153,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 51,
+   "execution_count": 101,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -148,8 +164,7 @@
     "text_file.write(spaces+'\\n')\n",
     "text_file.write(\"Total Votes: \" + str(TotVote)+'\\n')\n",
     "text_file.write(spaces+'\\n')\n",
-    "text_file.write(str(tr)+'\\n')\n",
-    "text_file.write(str(pct)+'\\n')\n",
+    "text_file.write(str(j)+'\\n')\n",
     "text_file.write(spaces+'\\n')\n",
     "text_file.write(\"Winner: Khan\"+'\\n')\n",
     "text_file.write(spaces+'\\n')\n",
